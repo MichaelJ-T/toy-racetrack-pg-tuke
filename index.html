@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Toy Racetrack - PG project</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  
+  <body>
+    <div id="MainMenu" class="">
+      <div id="MainMenuContainer" class="">
+        <button class="styled mainmenu" id="NewGame"
+        onclick="document.querySelector('#MainMenu').classList.toggle('hidden')">Start</button>
+        <button class="styled mainmenu" id="About" 
+        onclick="document.querySelector('#MainMenuContainer').classList.toggle('hidden'); 
+          document.querySelector('#AboutScreen').classList.toggle('hidden')">
+          About project
+        </button>
+        <button class="styled mainmenu" id="Controls" onclick="document.querySelector('#MainMenuContainer').classList.toggle('hidden'); 
+          document.querySelector('#ControlScreen').classList.toggle('hidden')">Controls</button>
+      </div>
+      <div id="AboutScreen" class="hidden">
+        <button class="styled mainmenu" id="Exit" 
+        onclick="document.querySelector('#AboutScreen').classList.toggle('hidden'); 
+        document.querySelector('#MainMenuContainer').classList.toggle('hidden')">X</button>
+        <h1>About this project</h1>
+        <hr>
+        <h2>Katedra počítačov a informatiky</h2>
+        <h3>Fakulta elektrotechniky a informatiky</h3>
+        <h3>Technická univerzita v Košiciach</h3>
+        <hr>
+        <p><b>Autor:</b> Michal Jusko</p>
+        <p><b>Predmet:</b> Počítačová grafika 2021/2022</p>
+      </div>
+      <div id="ControlScreen" class="hidden">
+        <button class="styled mainmenu" id="Exit" onclick="document.querySelector('#ControlScreen').classList.toggle('hidden'); 
+              document.querySelector('#MainMenuContainer').classList.toggle('hidden')">X</button>
+        <h1>Controls</h1>
+        <hr>
+        <h2><b>'R'</b> - hold and click on tile you want to rotate</h2>
+        <h2><b>'Left mouse click'</b> - add selected object</h2>
+        <h2><b>'Left mouse hold'</b> - rotate camera</h2>
+        <h2><b>'Right mouse hold'</b> - move camera</h2>
+        <h2><b>'Middle mouse hold/Scroll'</b> - zoom camera</h2>        
+      </div>
+    </div>
+
+    <script src="js/three/build/three.js"></script>
+    <script src="js/three/examples/js/controls/OrbitControls.js"></script>
+    <script src="js/three/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="js/three/examples/js/loaders/DRACOLoader.js"></script>
+    <script src="js/three/examples/js/loaders/FBXLoader.js"></script>
+    <script src="js/three/examples/js/libs/fflate.min.js"></script>
+    <script src="js/three/examples/js/loaders/OBJLoader.js"></script>
+    <script src="js/three/examples/js/WebGL.js"></script>
+    <script src="js/three/threex.keyboardstate.js"></script>
+    <script
+      type="module"
+      src="js/three/src/extras/curves/CatmullRomCurve3.js"
+    ></script>
+
+    <div id="canvas1">
+      <script type="module" src="js/MainScene.js"></script>
+    </div>
+    <button class="styled hidden" id="fpsSwitch">🎮FPS switch</button>
+    <div class="buildModeButtons">
+      <button class="styled builder" id="Start"></button>
+      <button class="styled builder" id="Left"></button>
+      <button class="styled builder activeButton" id="Straight"></button>
+      <button class="styled builder" id="Right"></button>
+      <button class="styled builder " id="Car"></button>
+      <button class="styled builder " id="CamSwitch"></button>
+      <button class="styled builder " id="Trash"></button>
+      <div class=" builder " id="LapsButton">
+        <h2 contenteditable id="NumberOfLaps">3</h2>
+        <div class="lapsContainer">
+          <button class="styled builder " id="removeLaps" 
+          onclick="
+          let laps = document.querySelector('#NumberOfLaps');
+          laps.innerHTML = (parseInt(laps.innerHTML) - 1 > 0)? parseInt(laps.innerHTML)-1: 1;
+          ">-</button>
+          <button class="styled builder " id="addLaps" onclick="
+          let laps = document.querySelector('#NumberOfLaps');
+          laps.innerHTML = parseInt(laps.innerHTML)+1;
+          ">+</button>
+        </div>
+      </div>
+    </div>
+    <div class="navbar">
+      <button class="styled playButtonStyle" id="Play">Play</button>
+    </div>
+    <div class="playersTable hidden" id="Players"></div>
+  </body>
+</html>
